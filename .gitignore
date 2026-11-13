@@ -1,0 +1,4 @@
+# secrets never committed
+agent/secrets.conf
+agent/accounts.conf
+*.key
