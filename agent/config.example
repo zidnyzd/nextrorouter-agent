@@ -5,13 +5,13 @@
 #   id|config_id|api_base
 #
 #   id        short unique name; only [A-Za-z0-9_-]
-#   config_id NextDNS profile / config ID, e.g. 4dc793
+#   config_id NextDNS profile / config ID, e.g. a1b2c3
 #   api_base  API root; normally https://api.nextdns.io
 #
 # API keys are kept separately in /etc/nexrouter/secrets.conf (chmod 600),
 # NOT in this file, so accounts.conf can be shared without exposing keys.
 
-ACCOUNTS='acc1|4dc793|https://api.nextdns.io
+ACCOUNTS='acc1|a1b2c3|https://api.nextdns.io
 acc2|<config_id_2>|https://api.nextdns.io'
 
 # Account that is currently active. Updated automatically by switch/auto.

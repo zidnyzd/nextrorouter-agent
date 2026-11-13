@@ -54,7 +54,7 @@ Cron runs `auto` every 30 minutes: `*/30 * * * * /usr/bin/nexrouter.sh auto`
 
 ### `/etc/nexrouter/accounts.conf`
 ```sh
-ACCOUNTS='acc1|4dc793|https://api.nextdns.io
+ACCOUNTS='acc1|a1b2c3|https://api.nextdns.io
 acc2|abc123|https://api.nextdns.io'
 CURRENT='acc1'
 ```

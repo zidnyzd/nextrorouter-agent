@@ -81,7 +81,7 @@ while [ $# -gt 0 ]; do
   esac
 done
 case "$url" in
-  *"/profiles/4dc793/"*)
+  *"/profiles/a1b2c3/"*)
     body='{"data":[{"status":"default","queries":250000},{"status":"blocked","queries":50000}]}'
     ;;
   *"/profiles/abc123/"*)
@@ -116,7 +116,7 @@ chmod +x "$WORK/bin/logger"
 
 # ---- sample config ------------------------------------------------------
 cat > "$WORK/conf/accounts.conf" <<'EOF'
-ACCOUNTS='acc1|4dc793|https://api.nextdns.io
+ACCOUNTS='acc1|a1b2c3|https://api.nextdns.io
 acc2|abc123|https://api.nextdns.io'
 CURRENT='acc1'
 EOF
@@ -178,7 +178,7 @@ assert_contains "switch updates CURRENT" "$(cat "$WORK/conf/accounts.conf")" "CU
 
 # 6. auto (should switch back to acc1? no, acc2 has more remaining)
 cat > "$WORK/conf/accounts.conf" <<'EOF'
-ACCOUNTS='acc1|4dc793|https://api.nextdns.io
+ACCOUNTS='acc1|a1b2c3|https://api.nextdns.io
 acc2|abc123|https://api.nextdns.io'
 CURRENT='acc1'
 EOF
@@ -203,7 +203,7 @@ exit 7
 EOF
 chmod +x "$WORK/bin/wget"
 cat > "$WORK/conf/accounts.conf" <<'EOF'
-ACCOUNTS='acc1|4dc793|https://api.nextdns.io
+ACCOUNTS='acc1|a1b2c3|https://api.nextdns.io
 acc2|abc123|https://api.nextdns.io'
 CURRENT='acc1'
 EOF
@@ -238,7 +238,7 @@ while [ $# -gt 0 ]; do
   esac
 done
 case "$url" in
-  *"/profiles/4dc793/"*)
+  *"/profiles/a1b2c3/"*)
     body='{"data":[{"status":"default","queries":250000},{"status":"blocked","queries":50000}]}' ;;
   *"/profiles/abc123/"*)
     body='{"data":[{"status":"default","queries":10000},{"status":"blocked","queries":2000}]}' ;;
@@ -272,7 +272,7 @@ while [ $# -gt 0 ]; do
   esac
 done
 case "$url" in
-  *"/profiles/4dc793/"*)
+  *"/profiles/a1b2c3/"*)
     body='{"errors":[{"code":"unauthorized","detail":"Bad API key"}]}'
     ;;
   *"/profiles/abc123/"*)
@@ -287,7 +287,7 @@ exit 0
 EOF
 chmod +x "$WORK/bin/wget"
 cat > "$WORK/conf/accounts.conf" <<'EOF'
-ACCOUNTS='acc1|4dc793|https://api.nextdns.io
+ACCOUNTS='acc1|a1b2c3|https://api.nextdns.io
 acc2|abc123|https://api.nextdns.io'
 CURRENT='acc1'
 EOF

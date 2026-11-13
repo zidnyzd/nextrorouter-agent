@@ -9,7 +9,7 @@ You need at least **two** free NextDNS accounts. Each free account has a 300,000
 1. Go to https://my.nextdns.io/signup
 2. Create Account 1, note the **API Key** (bottom of account page)
 3. Create Account 2, note its **API Key**
-4. In each account, create a **profile** (or use the default one). Note the **Config ID** (e.g. `4dc793`).
+4. In each account, create a **profile** (or use the default one). Note the **Config ID** (e.g. `a1b2c3`).
 
 > The Config ID is the same as the Profile ID. It appears in the URL when you open a profile: `https://my.nextdns.io/<config_id>`
 
@@ -50,7 +50,7 @@ vi /etc/nexrouter/accounts.conf
 
 Example:
 ```sh
-ACCOUNTS='home|4dc793|https://api.nextdns.io
+ACCOUNTS='home|a1b2c3|https://api.nextdns.io
 mobile|abc123|https://api.nextdns.io'
 CURRENT='home'
 ```
