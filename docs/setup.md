@@ -61,11 +61,14 @@ vi /etc/nexrouter/secrets.conf
 chmod 600 /etc/nexrouter/secrets.conf
 ```
 
-Example:
+Example (placeholder values only, never real keys):
 ```sh
-API_KEY_home='a8f4e42e896ff37f181e3e8a42a9737e1423d8e7'
-API_KEY_mobile='b9e5f53f9a7gg48g192f4f9b53b0848f2534e9f8'
+API_KEY_home='REPLACE_WITH_40_CHAR_API_KEY'
+API_KEY_mobile='REPLACE_WITH_40_CHAR_API_KEY'
 ```
+
+Each key is 40 hex characters, found at the bottom of my.nextdns.io/account.
+Never commit a filled secrets.conf; it is gitignored.
 
 ## 5. Test
 
