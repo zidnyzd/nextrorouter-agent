@@ -104,3 +104,19 @@ was 468,008, a 446k difference from October traffic. Use `from=%Y-%m-01`.
 ## License
 
 MIT
+## Quota Alert (anti-spam)
+
+`scripts/nexrouter-quota-watch.sh` dijalankan cron Hermes tiap 6 jam (mode no_agent):
+
+```sh
+hermes cron create '6h' --name 'Kuota NextDNS (ambang 85%)' \
+  --script nexrouter-quota-watch.sh --no-agent --deliver origin
+```
+
+Perilaku:
+- Sunyi total bila tidak ada akun >= 85% terpakai.
+- Akun yang sudah habis (sisa 0) TIDAK diulang tiap run; itu kondisi normal yang
+  sudah ditangani auto-switch.
+- State per akun di `/tmp/nexrouter-watch.state`: satu akun memberi notifikasi
+  SEKALI sampai pemakaiannya turun di bawah ambang, lalu boleh alert lagi bila naik.
+- Ambang diatur via env `QUOTA_WARN_PCT` (default 85).
