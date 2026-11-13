@@ -103,7 +103,8 @@ was 468,008, a 446k difference from October traffic. Use `from=%Y-%m-01`.
 
 ## License
 
-MIT
+MIT. See [LICENSE](LICENSE).
+
 ## Quota Alert (anti-spam)
 
 `scripts/nexrouter-quota-watch.sh` dijalankan cron Hermes tiap 6 jam (mode no_agent):
