@@ -121,3 +121,43 @@ Perilaku:
 - State per akun di `/tmp/nexrouter-watch.state`: satu akun memberi notifikasi
   SEKALI sampai pemakaiannya turun di bawah ambang, lalu boleh alert lagi bila naik.
 - Ambang diatur via env `QUOTA_WARN_PCT` (default 85).
+
+## Profile Sync (menyamakan setelan antar akun)
+
+Tiap akun NextDNS punya konfigurasi sendiri (blocklist, denylist, allowlist, native,
+performance, parental). Saat trafik dipindah pindah akun, setelan yang beda bikin
+proteksi tidak konsisten. `agent/ndprofile-sync.sh` menyamakannya.
+
+### Konsep
+
+- **Sumber kebenaran** = akun pertama di `accounts.conf` (atau `SOURCE_ID=<id>`).
+- Yang disalin: `security`, `privacy` (termasuk daftar blocklist/oisd), `denylist`,
+  `allowlist`, `settings.performance`, `parentalControl`.
+- Yang TIDAK disalin: `name`, `setup` (ipv4/ipv6/linkedIp/ddns), `fingerprint`,
+  `logs`, `settings.logs`, `settings.blockPage`.
+- Perubahan di akun non-sumber **dibalikkan** pada siklus berikutnya. Kalau kamu
+  memang ingin mengubah setelan, ubah di akun sumber, atau jadikan akun itu sumber
+  dengan `pull`.
+
+### Perintah
+
+```sh
+ndprofile-sync.sh status        # ringkasan tiap akun (deteksi beda)
+ndprofile-sync.sh push --dry    # pratinjau tanpa menulis
+ndprofile-sync.sh push          # salin config sumber ke akun lain
+SOURCE_ID=acc2 ndprofile-sync.sh push   # pakai acc2 sebagai sumber
+```
+
+### Idempoten
+
+Hash tanda tangan config dibandingkan sebelum menulis. Kalau sudah identik, akun
+dilewati tanpa request tulis. Ini membuat cron per jam aman (tidak spam API, tidak
+menghapus log analitik).
+
+### Cron
+
+```cron
+17 * * * * /usr/bin/ndprofile-sync.sh push >> /tmp/ndprofile-sync.log 2>&1
+```
+
+Menit 17 dipilih supaya tidak bentrok dengan `nexrouter.sh auto` di menit 00/30.
